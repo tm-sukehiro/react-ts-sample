@@ -1,5 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Hello from "./Hello";
+import Counter from "./Counter";
+import Store from "./Store";
+import {DispatchActions} from "./Models";
 
-ReactDOM.render(<Hello content="hello world"/>, document.getElementById('app'));
+function render() {
+  ReactDOM.render(
+    <Counter value={Store.getState()} actions={new DispatchActions(Store.dispatch)} />,
+    document.getElementById('app')
+  );
+}
+
+render();
+Store.subscribe(render);
