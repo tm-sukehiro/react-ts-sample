@@ -3,15 +3,25 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "test:tsx": "mocha --require ts-node/register ./test-setup.es6 \"./**/__test__/**/*.tsx\"",
+    "test:ts": "mocha --require ts-node/register \"./**/__test__/**/*.ts\"",
     "server": "node dev-server.es6",
     "postinstall": "typings install",
     "build": "webpack --progress --colors --watch --config ./webpack.config.dev.js",
     "build:prod": "webpack --config ./webpack.config.prod.js"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "express": "^4.14.0",
+    "jsdom": "^9.4.2",
+    "mocha": "^3.0.2",
+    "nock": "^8.0.0",
+    "react-addons-test-utils": "^15.3.1",
+    "redux-mock-store": "^1.1.4",
+    "sinon": "^1.17.5",
     "sleep": "^3.0.1",
     "ts-loader": "^0.8.2",
+    "ts-node": "^1.3.0",
     "typescript": "^1.8.10",
     "typings": "^1.3.2",
     "webpack": "^1.13.1"
