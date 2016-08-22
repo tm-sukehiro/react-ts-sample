@@ -1,10 +1,10 @@
-import {GlobalState, MyAction, ActionTypes} from "./Models";
+import {CounterState, MyAction, ActionTypes} from "./Models";
 // node.jsとes6が混ざってる感じがあるけどes6に寄せられるのかな？
 import objectAssign = require('object-assign');
 
-const initialState: GlobalState = {num: 0, loadingCount: 0};
+const initialState: CounterState = {num: 0, loadingCount: 0};
 
-export function counter(state: GlobalState = initialState, action: MyAction): GlobalState {
+export function counter(state: CounterState = initialState, action: MyAction): CounterState {
   switch (action.type) {
     case ActionTypes.INCREMENT: {
       const newNum = state.num + action.amount;

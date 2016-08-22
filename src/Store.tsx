@@ -1,8 +1,10 @@
-import {counter} from "./Reducer";
-import {createStore, applyMiddleware} from "redux";
+import {counter} from "./counter/Reducer";
+import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from 'redux-thunk';
 
 export default createStore(
-  counter,
+  combineReducers({
+    counter
+  }),
   applyMiddleware(thunk)
 );
