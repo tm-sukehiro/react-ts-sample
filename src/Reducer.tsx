@@ -1,14 +1,34 @@
 import {GlobalState, MyAction, ActionTypes} from "./Models";
+// node.jsとes6が混ざってる感じがあるけどes6に寄せられるのかな？
+import objectAssign = require('object-assign');
 
-const initialState: GlobalState = {num: 0}
+const initialState: GlobalState = {num: 0, loadingCount: 0};
 
 export function counter(state: GlobalState = initialState, action: MyAction): GlobalState {
   switch (action.type) {
-    case ActionTypes.INCREMENT:
-      return {num: state.num + action.amount};
-    case ActionTypes.DECREMENT:
-      return {num: state.num - action.amount};
+    case ActionTypes.INCREMENT: {
+      const newNum = state.num + action.amount;
+      return objectAssign({}, state, {num: newNum});
+    }
+    case ActionTypes.DECREMENT: {
+      const newNum = state.num - action.amount;
+      return objectAssign({}, state, {num: newNum});
+    }
+    case ActionTypes.FETCH_REQUEST: {
+      const newCount = state.loadingCount + 1;
+      return objectAssign({}, state, {loadingCount: newCount});
+    }
+    case ActionTypes.FETCH_SUCCESS: {
+      const newNum = state.num + action.amount;
+      const newCount = state.loadingCount - 1;
+      return objectAssign({}, state, {num: newNum, loadingCount: newCount});
+    }
+    case ActionTypes.FETCH_FAIL: {
+      console.error(action.error);
+      const newCount = state.loadingCount - 1;
+      return objectAssign({}, state, {loadingCount: newCount});
+    }
     default:
-      return state
+      return state;
   }
 }
