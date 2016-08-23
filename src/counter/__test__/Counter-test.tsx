@@ -2,7 +2,7 @@ import * as React from "react";
 import Counter from "../Counter";
 import {spy} from "sinon";
 import {assert} from "chai";
-import {GlobalState} from "../Models";
+import {CounterState} from "../Models";
 import * as TestUtils from "react-addons-test-utils";
 import * as ReactDOM from "react-dom";
 
@@ -10,9 +10,9 @@ describe('Counter test', () => {
 
   it('rendering test', () => {
     const actions: any = {};
-    const state: GlobalState = {num: 1, loadingCount: 1};
+    const state: CounterState = {num: 1, loadingCount: 1};
     const counterComponent: any = TestUtils.renderIntoDocument(
-      <Counter value={state} actions={actions} />
+      <Counter state={state} actions={actions} />
     );
 
     const counterDOM = ReactDOM.findDOMNode(counterComponent);
@@ -28,9 +28,9 @@ describe('Counter test', () => {
   it('click test', () => {
     const spyCB: any = spy();
     const actions: any = {fetchAmount: spyCB};
-    const state: GlobalState = {num: 0, loadingCount: 0};
+    const state: CounterState = {num: 0, loadingCount: 0};
     const counterComponent: any = TestUtils.renderIntoDocument(
-      <Counter value={state} actions={actions} />
+      <Counter state={state} actions={actions} />
     );
 
     const counterDOM = ReactDOM.findDOMNode(counterComponent);
