@@ -14,9 +14,10 @@ export default class Root extends React.Component<Props, {}> {
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to={Paths.COUNTER}>Counter</Link></li>
+          <li><Link to={Paths.TODO}>Todo</Link></li>
           <li><Link to="/random_url">NotFound</Link></li>
-          {this.props.children}
         </ul>
+        {this.props.children}
       </div>
     );
   }
