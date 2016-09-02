@@ -8,8 +8,11 @@ import CounterRoot from "./counter/Root";
 import {Provider} from "react-redux";
 import Store from "./Store";
 import {Paths} from "./Models";
+import {getRequest} from "./utils/HttpClient";
 
-function render() {
+function failCB(): void {}
+
+function successCB(val: any): void {
   const Routes = (
     <Route path='/' component={Root}>
       <Route path={Paths.TODO} component={TodoListRoot} />
@@ -26,5 +29,4 @@ function render() {
   );
 }
 
-render();
-Store.subscribe(render);
+getRequest<any>("authCheck", successCB, failCB);
